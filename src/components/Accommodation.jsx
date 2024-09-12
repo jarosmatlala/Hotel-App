@@ -6,7 +6,8 @@ import Room3 from "../assets/images/Room3.jpg";
 import Room7 from "../assets/images/Room7.jpg";
 import Deluxe from "../assets/images/Deluxe.webp";
 import images from "../assets/images/images.jfif"
-
+import {Button} from "react-bootstrap";
+import { useUserAuth } from "../context/UserAuthContext";
 
 
 import { useNavigate } from "react-router-dom";
@@ -18,9 +19,7 @@ import { Navbar } from "react-bootstrap";
 
 const Accomodation = () => {
   const navigate = useNavigate();
-
-
-
+  
   const handleBook = () =>{
     navigate ('/Droom')
 }
@@ -29,6 +28,9 @@ const handleDroom = () =>{
   navigate ('/DatePicker')
 
 }
+
+const {user} = useUserAuth();
+console.log(user);
 
   return (
 <>

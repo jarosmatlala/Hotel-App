@@ -26,9 +26,6 @@ const GalleryNav = () => {
             <a href="/Date" className="nav-links">Book-Now</a>
           </li>
          
-
-
-
         </ul>
       </div>
     </nav>

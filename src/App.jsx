@@ -18,7 +18,7 @@ import CustomDatePicker from './components/DatePicker';
 import selectedDate from './components/DatePicker';
 import handleDateChange from './components/DatePicker';
 import DatePickerWithLayout from './components/DatePickerWithLayout';
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 
@@ -30,21 +30,20 @@ function App() {
       <Container>
         <Row>
           <Col>
-            {/* <UserAuthContextProvider> */}
               <Routes>
-                {/* <Route path="/home" element={<ProtectedRoute>
-                  <Home/>
-                </ProtectedRoute>} />  */}
-                <Route path="LogIn" element={<Login />} />
-                <Route path="/" element={<Accommodation />} /> 
+
+                <Route path="Acc" element={<ProtectedRoute>
+                  <Accommodation/>
+                </ProtectedRoute>} /> 
+
+                <Route path="/" element={<Login />} />
+                <Route path="Acc" element={<Accommodation />} /> 
                 <Route path="Droom" element={<Droom />} />
                 <Route path="Gallery" element={<Gallery />} />
                 <Route path="DatePicker" element={< CustomDatePicker/>} />
                 <Route path="Date" element={<DatePickerWithLayout/>} />
-
                  <Route path="SignUp" element={<Signup />} />
               </Routes>           
-                        {/* </UserAuthContextProvider> */}
           </Col>
         </Row>
       </Container> 

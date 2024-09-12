@@ -23,7 +23,7 @@ const RoomNavbar = () => {
             <a href="/Gallery" className="nav-links">Contact Us</a>
           </li>
           <li className="nav-item">
-            <a href="/Gallery" className="nav-links">BOOK NOW</a>
+            <a href="/Date" className="nav-links">BOOK NOW</a>
           </li>
          
         </ul>
