@@ -39,8 +39,8 @@ const [selectedDate,setSelectedDate] = useState(null);
 
     return(
         <div>
-            <br />
-            <br />
+            <br/>
+            <br/>
             <h3>
             Hello , Please pick a day you want to book  
         </h3>

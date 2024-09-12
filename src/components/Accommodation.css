@@ -131,7 +131,7 @@
 }
 
 .book-now-btn {
-  background-color: #f3c37c; /* Button color similar to the image */
+  background-color: #f3c37c; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -143,5 +143,5 @@
 }
 
 .book-now-btn:hover {
-  background-color: #e3a962; /* Darker shade for hover effect */
+  background-color: #e3a962; 
 }

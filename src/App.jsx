@@ -17,6 +17,7 @@ import Gallery from './components/Gallery';
 import CustomDatePicker from './components/DatePicker';
 import selectedDate from './components/DatePicker';
 import handleDateChange from './components/DatePicker';
+import DatePickerWithLayout from './components/DatePickerWithLayout';
 
 
 
@@ -25,7 +26,6 @@ function App() {
 
   return (
     <div>
-      <Navbar />
 <UserAuthContextProvider>
       <Container>
         <Row>
@@ -39,9 +39,8 @@ function App() {
                 <Route path="/" element={<Accommodation />} /> 
                 <Route path="Droom" element={<Droom />} />
                 <Route path="Gallery" element={<Gallery />} />
-                <Route path="DatePicker" element={< CustomDatePicker
-                />} />
-
+                <Route path="DatePicker" element={< CustomDatePicker/>} />
+                <Route path="Date" element={<DatePickerWithLayout/>} />
 
                  <Route path="SignUp" element={<Signup />} />
               </Routes>           

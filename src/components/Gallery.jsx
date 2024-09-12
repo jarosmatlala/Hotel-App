@@ -3,11 +3,15 @@ import Room2 from "../assets/images/Room2.jpg";
 import Room1 from "../assets/images/Room2.jpg";
 
 import './Accommodation.css';
+import GalleryNav from "./GalleryNav";
 
 
 const accomodation = () => {
     return (
 
+<>
+
+<GalleryNav/>
 
         <div className="landing-page">
             <div className="image-container">
@@ -111,7 +115,7 @@ const accomodation = () => {
 
         </div>
 
-
+        </>
 
 
     );

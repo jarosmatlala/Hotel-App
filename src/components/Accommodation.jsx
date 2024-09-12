@@ -1,10 +1,19 @@
 import React from "react";
 import Room2 from "../assets/images/Room2.jpg";
 import Room1 from "../assets/images/Room2.jpg";
-import { useNavigate } from "react-router-dom";
+import room1 from "../assets/images/room1.jpg";
+import Room3 from "../assets/images/Room3.jpg";
+import Room7 from "../assets/images/Room7.jpg";
+import Deluxe from "../assets/images/Deluxe.webp";
+import images from "../assets/images/images.jfif"
 
+
+
+import { useNavigate } from "react-router-dom";
+import './Navbar.css'
 
 import './Accommodation.css';
+import { Navbar } from "react-bootstrap";
 
 
 const Accomodation = () => {
@@ -22,6 +31,8 @@ const handleDroom = () =>{
 }
 
   return (
+<>
+<Navbar/>
 
 
     <div className="landing-page">
@@ -36,7 +47,7 @@ const handleDroom = () =>{
           <div className="column"> 
           <div className="room-titles">TWIN SINGLE ROOM</div>
 
-            <img src={Room1} alt="Landing" className="landing-image" />
+            <img src={images} alt="Landing" className="landing-image" />
             <button className="book-now-btn" onClick={handleBook}  >BOOK NOW</button>
 
           </div>
@@ -44,7 +55,7 @@ const handleDroom = () =>{
           <div className="column"> 
           <div className="room-titles2">DOUBLE BEDROOM</div>
 
-            <img src={Room2} alt="Landing" className="landing-image" />
+            <img src={Deluxe} alt="Landing" className="landing-image" />
           <button className="book-now-btn" onClick={handleDroom}  >BOOK NOW</button>
 
           </div>
@@ -59,16 +70,16 @@ const handleDroom = () =>{
         <div className="room-card">
 
           <div class="room-image-container">
-            <img src={Room2} alt="Landing" className="landing-image" />
-            <div className="room-title">ONE BEDROOM1</div>
+            <img src={room1} alt="Landing" className="landing-image" />
+            <div className="room-title">BACHELOR</div>
           </div>
           <button className="book-now-btn">BOOK NOW</button>
         </div>
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
-            <div className="room-title">ONE BEDROOM</div>   
+            <img src={Room3} alt="One Bedroom" className="room-image" />
+            <div className="room-title">ONE & HALF BED ROOM</div>   
 
           </div>
           <button className="book-now-btn">BOOK NOW</button>
@@ -76,7 +87,7 @@ const handleDroom = () =>{
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
+            <img src={Room7} alt="One Bedroom" className="room-image" />
             <div className="room-title">ONE BEDROOM</div>
           </div>
           <button className="book-now-btn">BOOK NOW</button>
@@ -90,7 +101,7 @@ const handleDroom = () =>{
     </div>
 
 
-
+    </>
 
   );
 };
