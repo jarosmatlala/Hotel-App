@@ -39,7 +39,6 @@ console.log(user);
 
     <div className="landing-page">
       <div className="image-container">
-        <img src={Room2} alt="Landing" className="landing-image" />
 
         <h3>A BREATH OF FRESH AIR AND COMFORT</h3>
         <p>Each of our bright, light-flooded rooms come with everything you could possibly       </p>

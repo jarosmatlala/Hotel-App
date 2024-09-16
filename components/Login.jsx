@@ -28,6 +28,13 @@ const Login = () => {
 
     const handleGoogleSignIn = async () => {
         e.preventDefault();
+        setError("");
+        try{
+            await googleSignIn();
+            navigate("/Acc");
+        }catch (err){
+            setError (err.message); 
+        }
     };
 
     return (
@@ -62,15 +69,20 @@ const Login = () => {
                             </Button>
                         </div>
 
+
+                        
                     </Form>
                     <hr />
                 </div>
 
 
                 <GoogleButton className="gbtn" type="dark" onClick={handleGoogleSignIn}  />
+                <div style={{ marginTop: "10px" }}>
+                        <Link to="/forgot-password">Forgot Password?</Link>
+                    </div>
             </div>
             <div className="box">
-                Dont have an account ? <Link to="/Signup">Sign up</Link>
+                Dont have an account      <Link to="/Signup">Sign up</Link>
             </div>
 
         </>

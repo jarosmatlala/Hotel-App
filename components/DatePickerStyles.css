@@ -49,3 +49,11 @@
   .react-datepicker {
     font-size: 14px;
   }
+  .summary {
+    margin-top: 50px; 
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 80%; 
+  }
