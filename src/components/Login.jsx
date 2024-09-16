@@ -11,18 +11,23 @@ const Login = () => {
     const [email,setEmail] = useState ("");
     const [password,setPassword] = useState ("");
     const [error,setError] = useState ("");
-    const {logIn} = useUserAuth();
+    const {logIn, googleSignIn} = useUserAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         try {
-            await signIn(email,password);
-            navigate("/");
+            await logIn(email,password);
+            navigate("/Acc");
         }catch (err){
             setError(err.message);
         }
+    };
+
+
+    const handleGoogleSignIn = async () => {
+        e.preventDefault();
     };
 
     return (
@@ -62,7 +67,7 @@ const Login = () => {
                 </div>
 
 
-                <GoogleButton className="gbtn" type="dark" />
+                <GoogleButton className="gbtn" type="dark" onClick={handleGoogleSignIn}  />
             </div>
             <div className="box">
                 Dont have an account ? <Link to="/Signup">Sign up</Link>

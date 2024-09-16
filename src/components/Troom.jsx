@@ -9,7 +9,7 @@ import RoomNavbar from "./RoomNavbar";
 
 
 
-const Droom = () => {
+const Troom = () => {
 
   return (
 <>
@@ -20,7 +20,7 @@ const Droom = () => {
       <div className="image-container">
         <img src={Room2} alt="Landing" className="landing-image" />
 
-        <h3>ONE AND A HALF BEDROOM</h3>
+        <h3>TWIN SINGLE ROOM</h3>
 
         <div className="row">
 
@@ -99,4 +99,4 @@ const Droom = () => {
   );
 };
 
-export default Droom;
+export default Troom;

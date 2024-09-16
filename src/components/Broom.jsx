@@ -9,7 +9,7 @@ import RoomNavbar from "./RoomNavbar";
 
 
 
-const Droom = () => {
+const Broom = () => {
 
   return (
 <>
@@ -20,7 +20,7 @@ const Droom = () => {
       <div className="image-container">
         <img src={Room2} alt="Landing" className="landing-image" />
 
-        <h3>ONE AND A HALF BEDROOM</h3>
+        <h3>BACHELOR ROOM</h3>
 
         <div className="row">
 
@@ -30,10 +30,10 @@ const Droom = () => {
           <h3>FEATURES</h3>
 <br />
 
-          <i className="fa-solid fa-wifi">WIFI</i>
-          <i className="fa-solid fa-shower">SHOWER</i>
-          <i className="fa-solid fa-tv">DSTV</i>
-          <i className="fa-solid fa-tv">DSTV</i>
+          <i classNameName="fa-solid fa-wifi">WIFI</i>
+          <i classNameName="fa-solid fa-shower">SHOWER</i>
+          <i classNameName="fa-solid fa-tv">DSTV</i>
+          <i classNameName="fa-solid fa-tv">DSTV</i>
 
 <br />
 <br />
@@ -99,4 +99,4 @@ const Droom = () => {
   );
 };
 
-export default Droom;
+export default Broom;
