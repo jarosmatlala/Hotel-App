@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
 import RoomNavbar from "./RoomNavbar";
+import Footer from "./Footer";
 
 
 
@@ -64,7 +65,12 @@ function DatePickerWithLayout() {
         <div className="search-item">Proceed</div>
       </div>
 
-      {bookingDetails && (
+      
+
+
+    </div>
+<div>
+{bookingDetails && (
           <div className="summary">
             <h4>Booking Summary</h4>
             <p><strong>Room:</strong> {bookingDetails.roomType}</p>
@@ -73,9 +79,29 @@ function DatePickerWithLayout() {
             <p><strong>Check-Out Date:</strong> {selectedCheckOutDate ? selectedCheckOutDate.toDateString() : "Not selected"}</p>
           </div>
         )}
+</div>
 
-
+<div className="section">
+            <h3></h3>
+            <footer className="footer">
+  <div className="container">
+    <div className="footer-content">
+      <p>920 Zane Isle, Lebsackfurt, 38755</p>
+      <p>(207) 555-0136</p>
+      <a href="mailto:jaro@example.com">jaro@gmail.com</a>
     </div>
+    <div className="footer-socials">
+      <a href="#" target="_blank" aria-label="Facebook"><i className="fab fa-facebook-f">Facebook</i></a>
+      <a href="#" target="_blank" aria-label="Instagram"><i className="fab fa-instagram">Instagram</i></a>
+    </div>
+  </div>
+</footer>
+          </div>
+
+ 
+
+
+   
     </>
   );
 }

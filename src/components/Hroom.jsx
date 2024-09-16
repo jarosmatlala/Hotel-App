@@ -4,6 +4,13 @@ import Room1 from "../assets/images/Room2.jpg";
 import '@fortawesome/fontawesome-free/css/all.css';
 import './Accommodation.css';
 import RoomNavbar from "./RoomNavbar";
+import halfbedroom from "../assets/images/halfbedroom.jpg";
+import hlfbd2 from "../assets/images/hlfbd2.jpg";
+import hlfbd3 from "../assets/images/hlfbd3.jpg";
+import hlfbd4 from "../assets/images/hlfbd4.jpg";
+import hlfbd5 from "../assets/images/hlfbd5.jpg";
+import hlfbd6 from "../assets/images/hlfbd6.jpg";
+
 
 
 
@@ -18,7 +25,7 @@ const Hroom = () => {
       <br />
       <br />
       <div className="image-container">
-        <img src={Room2} alt="Landing" className="landing-image" />
+        <img src={halfbedroom} alt="Landing" className="landing-image" />
 
         <h3>ONE & HALF BEDROOM</h3>
 
@@ -41,38 +48,38 @@ const Hroom = () => {
 
         <div className="room-card">
 
-          <div class="room-image-container">
-            <img src={Room2} alt="Landing" className="landing-image" />
+          <div className="room-image-container">
+            <img src={halfbedroom} alt="Landing" className="landing-image" />
           </div>
         </div>
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
+            <img src={hlfbd2} alt="One Bedroom" className="room-image" />
           </div>
         </div>
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
+            <img src={hlfbd3} alt="One Bedroom" className="room-image" />
           </div>
         </div>
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
+            <img src={hlfbd4} alt="One Bedroom" className="room-image" />
           </div>
         </div>
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
+            <img src={hlfbd5} alt="One Bedroom" className="room-image" />
           </div>
         </div>
 
         <div className="room-card">
           <div className="room-image-container">
-            <img src={Room1} alt="One Bedroom" className="room-image" />
+            <img src={hlfbd6} alt="One Bedroom" className="room-image" />
           </div>
           
           <div>

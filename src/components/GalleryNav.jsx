@@ -11,7 +11,7 @@ const GalleryNav = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <h1 className="logo">JARO </h1>
+        <h1 className="logo"> </h1>
         <div className="menu-icon" onClick={toggleMenu}>
         </div>
         <ul className={isOpen ? 'nav-menu active' : 'nav-menu'}>

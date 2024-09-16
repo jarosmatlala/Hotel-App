@@ -92,7 +92,7 @@ const Broom = () => {
 
 
     </div>
-
+<Footer/>
     </>
 
 

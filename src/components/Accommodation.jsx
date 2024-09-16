@@ -14,7 +14,8 @@ import './Navbar.css'
 import './Accommodation.css';
 import { Navbar } from "react-bootstrap";
 import AccNav from "./AccNav";
-
+import double from "../assets/images/double.jpg";
+import Footer from "./Footer";
 
 const Accomodation = () => {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ const Accomodation = () => {
 
           <img src={Room2} alt="Landing" className="landing-image1" />
 <br />
+<br />
           <h3>A BREATH OF FRESH AIR AND COMFORT</h3>
           <p>Each of our bright, light-flooded rooms come with everything you could possibly       </p>
           <p> need for a comfortable stay.</p>
@@ -75,7 +77,7 @@ const Accomodation = () => {
             <div className="column">
               <div className="room-titles">TWIN SINGLE ROOM</div>
 
-              <img src={images} alt="Landing" className="landing-image" />
+              <img src={double} alt="Landing" className="landing-image" />
               <button className="book-now-btn" onClick={handleBook}  >VIEW</button>
               <button className="book-now-btn"   >R300.00</button>
 
@@ -101,7 +103,7 @@ const Accomodation = () => {
 
           <div className="room-card">
 
-            <div class="room-image-container">
+            <div className="room-image-container">
               <img src={room1} alt="Landing" className="landing-image" />
               <div className="room-title">BACHELOR</div>
             </div>
@@ -134,13 +136,40 @@ const Accomodation = () => {
 
         </div>
 
+        <div className="section1">
+            <h3>APARTMENTS</h3>
 
-      </div>
+          </div>
+
+       <div>
+        
+       <footer className="footer">
+  <div className="container">
+    <div className="footer-content">
+      <p>920 Zane Isle, Lebsackfurt, 38755</p>
+      <p>(207) 555-0136</p>
+      <a href="mailto:jaro@example.com">jaro@gmail.com</a>
+    </div>
+    <div className="footer-socials">
+      <a href="#" target="_blank" aria-label="Facebook"><i className="fab fa-facebook-f">Facebook</i></a>
+      <a href="#" target="_blank" aria-label="Instagram"><i className="fab fa-instagram">Instagram</i></a>
+    </div>
+  </div>
+</footer>
+
+       </div>
+       
+  
+
+        </div>
+  
 
 
-    </>
+        </>
 
   );
+  <Footer/>
+
 };
 
 export default Accomodation;

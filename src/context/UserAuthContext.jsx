@@ -6,6 +6,7 @@ import {
     onAuthStateChanged,
     GoogleAuthProvider,
     signInWithPopup,
+    sendPasswordResetEmail
 }  from "firebase/auth";
 import {auth} from '../firebase';
 // import { GoogleAuthProvider } from "firebase/auth/web-extension";
@@ -35,7 +36,9 @@ const [user,setUser] = useState("null");
         return signInWithPopup(auth,googleAuthProvider)
     }
 
-
+function resetPassword(email){
+    return sendPasswordResetEmail(auth,email);
+}
 
 
 
@@ -51,7 +54,7 @@ const [user,setUser] = useState("null");
 
 
     return(
-    <UserAuthContext.Provider value={{user,signUp,logIn,logOut,googleSignIn}}>
+    <UserAuthContext.Provider value={{user,signUp,logIn,logOut,googleSignIn,resetPassword}}>
         {children}
         </UserAuthContext.Provider>
     );
