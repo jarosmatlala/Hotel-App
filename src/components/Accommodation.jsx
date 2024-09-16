@@ -72,6 +72,8 @@ const Accomodation = () => {
           <h3>A BREATH OF FRESH AIR AND COMFORT</h3>
           <p>Each of our bright, light-flooded rooms come with everything you could possibly       </p>
           <p> need for a comfortable stay.</p>
+          
+      
 
           <div className="row">
             <div className="column">
@@ -142,7 +144,7 @@ const Accomodation = () => {
           </div>
 
        <div>
-        
+
        <footer className="footer">
   <div className="container">
     <div className="footer-content">

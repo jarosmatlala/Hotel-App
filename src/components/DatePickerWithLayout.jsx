@@ -6,11 +6,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
 import RoomNavbar from "./RoomNavbar";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
 
 
 function DatePickerWithLayout() {
+  const navigate = useNavigate();
+
   const [selectedCheckInDate, setSelectedCheckInDate] = useState(null);
   const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(null);
   const [bookingDetails, setBookingDetails] = useState(null);
@@ -29,6 +32,11 @@ function DatePickerWithLayout() {
 
     fetchBookingDetails();
   }, []);
+
+
+  const handleClick = () => {
+    navigate('/Gallery')
+  }
 
 
 
@@ -62,14 +70,20 @@ function DatePickerWithLayout() {
             placeholderText="Select Check-Out Date"
           />
         </div>
-        <div className="search-item">Proceed</div>
+        <div>
+        <button className="search-item" onClick={handleClick}  >Change Room</button>
+        </div>
       </div>
+
 
       
 
 
     </div>
 <div>
+
+  <br />
+  <br />
 {bookingDetails && (
           <div className="summary">
             <h4>Booking Summary</h4>
@@ -81,6 +95,17 @@ function DatePickerWithLayout() {
         )}
 </div>
 
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<br />
 <div className="section">
             <h3></h3>
             <footer className="footer">
