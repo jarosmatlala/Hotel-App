@@ -6,13 +6,21 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
 import RoomNavbar from "./RoomNavbar";
+import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js";
 
 
 
 function DatePickerWithLayout() {
+  const navigate = useNavigate();
+
   const [selectedCheckInDate, setSelectedCheckInDate] = useState(null);
   const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(null);
   const [bookingDetails, setBookingDetails] = useState(null);
+  const [paymentData,setPaymentData] =  useState({});
+
+
 
   useEffect(() => {
     const fetchBookingDetails = async () => {
@@ -27,7 +35,40 @@ function DatePickerWithLayout() {
     };
 
     fetchBookingDetails();
+
+    const totalAmount = cartItems.reduce((acc,item)=> acc + item.price * item.quantity,0 );
+    setPaymentData((prevData) => ({...prevData,amount: totalAmount}));
   }, []);
+
+  const initialOptions = {
+    // "booking-id"
+    currency: "USD",
+    intent: "capture",
+  }
+
+  const createOrder = (data,actions) =>{
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount:{
+            currecy_code: "USD",
+            Value: paymentData.amount,
+          },
+        },
+      ],
+    });
+  };
+
+  const onApprove = (data,actions) =>
+ {
+  return actions.order.capture().then((details) =>{
+    alert("Transaction completed by " + details.payer.name.given_name);
+  });
+ };
+
+  const handleClick = () => {
+    navigate('/Gallery')
+  }
 
 
 
@@ -61,10 +102,21 @@ function DatePickerWithLayout() {
             placeholderText="Select Check-Out Date"
           />
         </div>
-        <div className="search-item">Proceed</div>
+        <div>
+        <button className="search-item" onClick={handleClick}  >Change Room</button>
+        </div>
       </div>
 
-      {bookingDetails && (
+
+      
+
+
+    </div>
+<div>
+
+  <br />
+  <br />
+{bookingDetails && (
           <div className="summary">
             <h4>Booking Summary</h4>
             <p><strong>Room:</strong> {bookingDetails.roomType}</p>
@@ -73,9 +125,40 @@ function DatePickerWithLayout() {
             <p><strong>Check-Out Date:</strong> {selectedCheckOutDate ? selectedCheckOutDate.toDateString() : "Not selected"}</p>
           </div>
         )}
+</div>
 
 
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<div className="section">
+            <h3></h3>
+            <footer className="footer">
+  <div className="container">
+    <div className="footer-content">
+      <p>920 Zane Isle, Lebsackfurt, 38755</p>
+      <p>(207) 555-0136</p>
+      <a href="mailto:jaro@example.com">jaro@gmail.com</a>
     </div>
+    <div className="footer-socials">
+      <a href="#" target="_blank" aria-label="Facebook"><i className="fab fa-facebook-f">Facebook</i></a>
+      <a href="#" target="_blank" aria-label="Instagram"><i className="fab fa-instagram">Instagram</i></a>
+    </div>
+  </div>
+</footer>
+          </div>
+
+ 
+
+
+   
     </>
   );
 }

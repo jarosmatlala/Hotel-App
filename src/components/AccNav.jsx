@@ -25,9 +25,9 @@ const AccNav = () => {
             <a href="/Acc" className="nav-links">Accomodation</a>
           </li>
          
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a href="/Registration" className="nav-links">Contact Us</a>
-          </li>
+          </li> */}
 
           <li className="nav-item">
             <a href="/Gallery" className="nav-links">Gallery</a>

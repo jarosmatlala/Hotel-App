@@ -16,14 +16,14 @@ const Navbar = () => {
         </div>
         <ul className={isOpen ? 'nav-menu active' : 'nav-menu'}>
           <li className="nav-item">
-            <a href="/Acc" className="nav-links">Accomodation</a>
+            <a href="/Acc" className="nav-links">HOME</a>
           </li>
           {/* <li className="nav-item">
             <a href="/Gallery" className="nav-links">Gallery</a>
           </li> */}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a href="/Registration" className="nav-links">Contact Us</a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a href="/DatePicker" className="nav-links">Book-Now</a>
           </li>
