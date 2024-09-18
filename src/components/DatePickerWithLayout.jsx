@@ -20,6 +20,8 @@ function DatePickerWithLayout() {
   const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(null);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [paymentData, setPaymentData] = useState({});
+  const [isEditingRoom, setIsEditingRoom] = useState(false);
+  const [newRoomName, setNewRoomName] = useState("");
 
   const { user } = useUserAuth();
 
@@ -35,11 +37,11 @@ function DatePickerWithLayout() {
       if (docSnap.exists()) {
         const data = docSnap.data();
         setBookingDetails(data);
+        setNewRoomName(data.roomType);
 
-        
-      const totalAmount = bookingDetails?.price || 0; 
-      setPaymentData((prevData) => ({ ...prevData, amount: totalAmount }));
-        
+        const totalAmount = bookingDetails?.price || 0;
+        setPaymentData((prevData) => ({ ...prevData, amount: totalAmount }));
+
 
       } else {
         console.log("No such document!");
@@ -50,15 +52,21 @@ function DatePickerWithLayout() {
     fetchBookingDetails();
   }, []);
 
-useEffect (()=>{
-  if(bookingDetails){
-    setBookingDetails({
-      ...bookingDetails,
-      checkIn:selectedCheckInDate,
-      checkOut: selectedCheckOutDate,
-    });
-  }
-},[selectedCheckInDate, selectedCheckOutDate]);
+  useEffect(() => {
+    if (bookingDetails) {
+      setBookingDetails({
+        ...bookingDetails,
+        checkIn: selectedCheckInDate,
+        checkOut: selectedCheckOutDate,
+      });
+    }
+  }, [selectedCheckInDate, selectedCheckOutDate]);
+
+  const handleEmailClick = () => {
+    if (bookingDetails) {
+      navigate("confirmed");
+    }
+  };
 
 
   const handleClick = () => {
@@ -75,12 +83,12 @@ useEffect (()=>{
 
   const createOrder = (data, actions) => {
 
-const totalAmount = "100.00";
+    const totalAmount = "100.00";
 
-if (parseFloat(totalAmount) <=0){
-  console.error("The total amount must be greather than zero");
-  return;
-}
+    if (parseFloat(totalAmount) <= 0) {
+      console.error("The total amount must be greather than zero");
+      return;
+    }
 
     return actions.order.create({
       purchase_units: [
@@ -100,6 +108,22 @@ if (parseFloat(totalAmount) <=0){
     });
   };
 
+  const handleRoomNameChange = (e) => {
+    setNewRoomName(e.target.value);
+  };
+
+  const handleRoomNameSave = () => {
+    setBookingDetails((prevDetails) => ({
+      ...prevDetails,
+      roomType: newRoomName,
+    }));
+    setIsEditRoom(false);
+  };
+
+  const handleEditClick = () => {
+    setIsEditingRoom(true);
+  }
+
   return (
 
 
@@ -112,7 +136,16 @@ if (parseFloat(totalAmount) <=0){
 
       <div className="calendar-container">
         <div className="search-box">
-          <div className="search-item">Filter Room</div>
+
+          {/* <div className="search-item"> Hello
+            <span style={{ fontWeight: "bold", cursor: "pointer" }}
+              onClick={handleEmailClick}
+            >
+              ({user?.email || "Not logged in"})</span>    Here is your Booking Summary       
+              
+               </div> */}
+
+
           <div className="search-item">
             <label>Check In</label>
             <DatePicker
@@ -144,30 +177,60 @@ if (parseFloat(totalAmount) <=0){
         <br />
         {bookingDetails && (
           <div className="summary">
+
+<div className="search-item"> Hello
+            <span style={{ fontWeight: "bold", cursor: "pointer" }}
+              onClick={handleEmailClick}
+            >
+              ({user?.email || "Not logged in"})</span>    Here is your Booking Summary       
+              
+               </div>
+
             <h4>Booking Summary</h4>
-            <p><strong>Room:</strong> {bookingDetails.roomType}</p>
+
+            {isEditingRoom ? (
+              <div>
+                <input
+                  type="text"
+                  value={newRoomName}
+                  onChange={handleRoomNameChange}
+                  placeholder="Enter new room name"
+                />
+                <button onClick={handleRoomNameSave}>Save</button>
+              </div>
+            ) : (
+              <div>
+                <p>
+                  <strong>Room:</strong> {bookingDetails.roomType}
+                  <button onClick={handleEditClick}>Edit Room</button>
+                </p>
+              </div>
+            )}
+
+
+
             <p><strong>Price:</strong> {bookingDetails.price}</p>
             <p><strong>Check-In Date:</strong> {selectedCheckInDate ? selectedCheckInDate.toDateString() : "Not selected"}</p>
             <p><strong>Check-Out Date:</strong> {selectedCheckOutDate ? selectedCheckOutDate.toDateString() : "Not selected"}</p>
 
             <div className="modal-container">
 
-            <div className="icons-container">
-        <OrderConfirmed order={bookingDetails} />
-        <CancelOutlined
-          size={40}
-          onClick={handleConfirmOrder}
-          className="cancel"
-        />
-             </div>
+              <div className="icons-container">
+                <OrderConfirmed order={bookingDetails} />
+                <CancelOutlined
+                  size={40}
+                  onClick={handleConfirmOrder}
+                  className="cancel"
+                />
+              </div>
 
-            <PayPalScriptProvider options={initialOptions}  >
-              
-              <PayPalButtons
-               createOrder={(data,actions)=> createOrder(data,actions)}
-              onApprove={(data,actions) => onApprove(data,actions)}
-              />
-            </PayPalScriptProvider>
+              <PayPalScriptProvider options={initialOptions}  >
+
+                <PayPalButtons
+                  createOrder={(data, actions) => createOrder(data, actions)}
+                  onApprove={(data, actions) => onApprove(data, actions)}
+                />
+              </PayPalScriptProvider>
 
 
             </div>
