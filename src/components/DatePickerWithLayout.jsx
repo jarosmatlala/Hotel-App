@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { CancelOutlined } from "@mui/icons-material";
 import OrderConfirmed from "./OrderConfirmed";
+import { useUserAuth } from "../context/UserAuthContext";
 
 function DatePickerWithLayout() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function DatePickerWithLayout() {
   const [bookingDetails, setBookingDetails] = useState(null);
   const [paymentData, setPaymentData] = useState({});
 
-
+  const { user } = useUserAuth();
 
   const handleConfirmOrder = () => {
     console.log("Order confirmed");
@@ -49,6 +50,16 @@ function DatePickerWithLayout() {
     fetchBookingDetails();
   }, []);
 
+useEffect (()=>{
+  if(bookingDetails){
+    setBookingDetails({
+      ...bookingDetails,
+      checkIn:selectedCheckInDate,
+      checkOut: selectedCheckOutDate,
+    });
+  }
+},[selectedCheckInDate, selectedCheckOutDate]);
+
 
   const handleClick = () => {
     navigate('/Gallery')
@@ -63,12 +74,20 @@ function DatePickerWithLayout() {
 
 
   const createOrder = (data, actions) => {
+
+const totalAmount = "100.00";
+
+if (parseFloat(totalAmount) <=0){
+  console.error("The total amount must be greather than zero");
+  return;
+}
+
     return actions.order.create({
       purchase_units: [
         {
           amount: {
             currency_code: "USD",
-            value: paymentData.amount,
+            value: totalAmount,
           },
         },
       ],
