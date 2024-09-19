@@ -6,14 +6,27 @@ import './Accommodation.css';
 import RoomNavbar from "./RoomNavbar";
 
 
+import { useLocation } from 'react-router-dom';
+
+
 
 
 
 const Droom = () => {
 
+  const location = useLocation();
+  const roomDetails = location.state || {};
+
   return (
     <>
       <RoomNavbar />
+
+
+      {/* <div>
+      <h1>{roomDetails.roomType || 'Default Room'}</h1>
+      <p>Price: {roomDetails.price || 'No price available'}</p>
+    </div> */}
+  
       <div className="landing-page">
         <br />
         <br />

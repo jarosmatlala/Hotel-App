@@ -13,21 +13,31 @@ import Footer from "./Footer";
 import './Footer.css';
 
 
-const accomodation = () => {
+const Gallery = () => {
     const navigate = useNavigate();
 
-    const handleGarden = async () => {
+    // const handleGarden = async () => {
+    //     const roomDetails = {
+    //         roomType: "Garden View Room",
+    //         price: "R300.00",
+    //         userId: "unique-user-id",
+    //     };
+
+    //     await setDoc(doc(db, "bookings", "booking-id"), roomDetails);
+    //     navigate('/Droom', { state: roomDetails });
+
+    // }
+
+    const handleRoomSelection = (roomType, price) => {
         const roomDetails = {
-            roomType: "Garden View Room",
-            price: "R300.00",
-            userId: "unique-user-id",
+          roomType,
+          price,
+          userId: "unique-user-id", 
         };
-
-        await setDoc(doc(db, "bookings", "booking-id"), roomDetails);
         navigate('/Droom', { state: roomDetails });
+      };
 
-    }
-
+    
 
 
     return (
@@ -52,7 +62,8 @@ const accomodation = () => {
                             <img src={Room1} alt="Landing" className="landing-image" />
                             <div className="room-title">Garden View Room</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Garden View Room", "R300.00")}>VIEW</button>
+
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -62,7 +73,7 @@ const accomodation = () => {
                             <img src={Room1} alt="One Bedroom" className="room-image" />
                             <div className="room-title">Mountain View Room</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Mountain View", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
 
@@ -73,7 +84,7 @@ const accomodation = () => {
                             <img src={Room1} alt="One Bedroom" className="room-image" />
                             <div className="room-title">Luxury Room</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Luxury", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -89,7 +100,7 @@ const accomodation = () => {
                             <img src={Room2} alt="Landing" className="landing-image" />
                             <div className="room-title">Family Room</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Family Room", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -99,7 +110,7 @@ const accomodation = () => {
                             <img src={Room1} alt="One Bedroom" className="room-image" />
                             <div className="room-title">Accessible Room</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Accessible Room", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -109,7 +120,7 @@ const accomodation = () => {
                             <img src={Room1} alt="One Bedroom" className="room-image" />
                             <div className="room-title">Standard Room</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Standard Room", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -125,7 +136,7 @@ const accomodation = () => {
                             <img src={Room2} alt="Landing" className="landing-image" />
                             <div className="room-title">King Rooms</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Kings Rooms", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -135,7 +146,7 @@ const accomodation = () => {
                             <img src={Room1} alt="One Bedroom" className="room-image" />
                             <div className="room-title">Presidential Suite</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("Presidential Suite", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -145,7 +156,7 @@ const accomodation = () => {
                             <img src={Room1} alt="One Bedroom" className="room-image" />
                             <div className="room-title">Garden View</div>
                         </div>
-                        <button className="book-now-btn" onClick={handleGarden}  >VIEW</button>
+                        <button className="book-now-btn" onClick={() => handleRoomSelection("One Bedroom", "R300.00")}>VIEW</button>
                         <button className="book-now-btn"   >R300.00</button>
 
                     </div>
@@ -186,4 +197,4 @@ const accomodation = () => {
     );
 };
 
-export default accomodation;
+export default Gallery;

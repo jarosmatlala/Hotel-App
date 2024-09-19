@@ -14,16 +14,16 @@ function DatePickerWithLayout() {
         <div className="search-item">
           <label>Check In Dates</label>
           <DatePicker
-            selected={selectedCheckInDate}
-            onChange={(date) => setSelectedCheckInDate(date)}
+            selected={CheckInDate}
+            onChange={(date) => dispatchEvent(SelectedCheckOutDate(date))}
             placeholderText="Select Check-In Date"
           />
         </div>
         <div className="search-item">
           <label>Check Out Dates</label>
           <DatePicker
-            selected={selectedCheckOutDate}
-            onChange={(date) => setSelectedCheckOutDate(date)}
+            selected={CheckOutDate}
+            onChange={(date) => dispatchEvent(SelectedCheckOutDate(date))}
             placeholderText="Select Check-Out Date"
           />
         </div>

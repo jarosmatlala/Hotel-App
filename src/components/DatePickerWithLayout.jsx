@@ -6,19 +6,40 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
 import RoomNavbar from "./RoomNavbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { CancelOutlined } from "@mui/icons-material";
 import OrderConfirmed from "./OrderConfirmed";
 import { useUserAuth } from "../context/UserAuthContext";
+import { useSelector, useDispatch } from 'react-redux';
+import { setNumberOfRooms, setNumberOfGuests, setCheckInDate, setCheckOutDate } from '../redux/bookingSlice';
+
 
 function DatePickerWithLayout() {
   const navigate = useNavigate();
 
-  const [selectedCheckInDate, setSelectedCheckInDate] = useState(null);
-  const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(null);
+  const dispatch = useDispatch();
+
+  const { numberOfRooms, numberOfGuests, checkInDate, checkOutDate } = useSelector(state => state.booking);
+  
+  const [selectedCheckInDate, setSelectedCheckInDate] = useState(checkInDate ? new Date(checkInDate) : null);
+  const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(checkOutDate ? new Date(checkOutDate) : null);
+
+  const handleCheckInDateChange = (date) => {
+    setSelectedCheckInDate(date);
+    dispatch(setCheckInDate(date ? date.toISOString() : null)); 
+  };
+
+  const handleCheckOutDateChange = (date) => {
+    setSelectedCheckOutDate(date);
+    dispatch(setCheckOutDate(date ? date.toISOString() : null)); 
+  };
+
+
+  
   const [bookingDetails, setBookingDetails] = useState(null);
+  
   const [paymentData, setPaymentData] = useState({});
   const [isEditingRoom, setIsEditingRoom] = useState(false);
   const [newRoomName, setNewRoomName] = useState("");
@@ -39,7 +60,7 @@ function DatePickerWithLayout() {
         setBookingDetails(data);
         setNewRoomName(data.roomType);
 
-        const totalAmount = bookingDetails?.price || 0;
+        const totalAmount = data.price || 0;
         setPaymentData((prevData) => ({ ...prevData, amount: totalAmount }));
 
 
@@ -58,9 +79,12 @@ function DatePickerWithLayout() {
         ...bookingDetails,
         checkIn: selectedCheckInDate,
         checkOut: selectedCheckOutDate,
+        numberOfRooms,
+        numberOfGuests,
+        totalPrice: bookingDetails.price * numberOfRooms,
       });
     }
-  }, [selectedCheckInDate, selectedCheckOutDate]);
+  }, [selectedCheckInDate, selectedCheckOutDate, numberOfRooms,numberOfGuests]);
 
   const handleEmailClick = () => {
     if (bookingDetails) {
@@ -70,7 +94,7 @@ function DatePickerWithLayout() {
 
 
   const handleClick = () => {
-    navigate('/Gallery')
+    navigate('/Gallery');
   }
 
   const initialOptions = {
@@ -117,7 +141,7 @@ function DatePickerWithLayout() {
       ...prevDetails,
       roomType: newRoomName,
     }));
-    setIsEditRoom(false);
+    setIsEditingRoom(false);
   };
 
   const handleEditClick = () => {
@@ -150,7 +174,7 @@ function DatePickerWithLayout() {
             <label>Check In</label>
             <DatePicker
               selected={selectedCheckInDate}
-              onChange={(date) => setSelectedCheckInDate(date)}
+              onChange={handleCheckInDateChange}
               placeholderText="Select Check-In Date"
             />
 
@@ -159,10 +183,30 @@ function DatePickerWithLayout() {
             <label>Check Out</label>
             <DatePicker
               selected={selectedCheckOutDate}
-              onChange={(date) => setSelectedCheckOutDate(date)}
+              onChange={handleCheckOutDateChange}
               placeholderText="Select Check-Out Date"
             />
           </div>
+
+          <div className="search-item">
+            <label>Number of Rooms</label>
+            <input
+              type="number"
+              value={numberOfRooms}
+              onChange={(e) => dispatch(setNumberOfRooms(Number(e.target.value)))}
+              min="1"
+            />
+          </div>
+          <div className="search-item">
+            <label>Number of Guests</label>
+            <input
+              type="number"
+              value={numberOfGuests}
+              onChange={(e) => dispatch(setNumberOfGuests(Number(e.target.value)))}
+              min="1"
+            />
+          </div>
+
           <div>
             <button className="search-item" onClick={handleClick}  >Change Room</button>
           </div>
@@ -212,6 +256,8 @@ function DatePickerWithLayout() {
             <p><strong>Price:</strong> {bookingDetails.price}</p>
             <p><strong>Check-In Date:</strong> {selectedCheckInDate ? selectedCheckInDate.toDateString() : "Not selected"}</p>
             <p><strong>Check-Out Date:</strong> {selectedCheckOutDate ? selectedCheckOutDate.toDateString() : "Not selected"}</p>
+            <p><strong>Total Price for {numberOfRooms} Room(s):</strong> {bookingDetails.totalPrice}</p>
+            <p><strong>Number of Guests:</strong> {numberOfGuests}</p>
 
             <div className="modal-container">
 
