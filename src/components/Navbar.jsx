@@ -18,12 +18,7 @@ const Navbar = () => {
           <li className="nav-item">
             <a href="/Acc" className="nav-links">HOME</a>
           </li>
-          {/* <li className="nav-item">
-            <a href="/Gallery" className="nav-links">Gallery</a>
-          </li> */}
-          {/* <li className="nav-item">
-            <a href="/Registration" className="nav-links">Contact Us</a>
-          </li> */}
+       
           <li className="nav-item">
             <a href="/DatePicker" className="nav-links">Book-Now</a>
           </li>

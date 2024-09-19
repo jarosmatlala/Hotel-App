@@ -19,9 +19,7 @@ const RoomNavbar = () => {
           <li className="nav-item">
             <a href="/Gallery" className="nav-links">Browse for more</a>
           </li>
-          {/* <li className="nav-item">
-            <a href="/Gallery" className="nav-links">Gallery</a>
-          </li> */}
+         
           <li className="nav-item">
             <a href="/Date" className="nav-links">BOOK NOW</a>
           </li>

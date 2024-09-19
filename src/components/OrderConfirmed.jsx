@@ -16,8 +16,7 @@ function OrderConfirmed({ order }) {
       <div className="order-details">
         <p><strong>Order ID:</strong> {id}</p>
         <p><strong>Room Type:</strong> {roomType}</p>
-        {/* <p><strong>Check-In Date:</strong> {checkInDate ? new Date(checkInDate).toDateString() : "N/A"}</p>
-        <p><strong>Check-Out Date:</strong> {checkOutDate ? new Date(checkOutDate).toDateString() : "N/A"}</p> */}
+      
         <p><strong>Total Price:</strong> ${price}</p>
       </div>
 

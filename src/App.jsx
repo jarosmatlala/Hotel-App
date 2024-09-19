@@ -25,6 +25,7 @@ import AccNav from './components/AccNav';
 import ForgotPassword from './components/forgotPassword';
 import Footer from "./components/Footer";
 import Create from "./components/Create";
+import Contact from "./components/Contact";
 
 function App() {
 
@@ -48,11 +49,9 @@ function App() {
                 <Route path="Proom" element={<Proom />} />
                 <Route path="Create" element={<Create />} />
 
-
-
-
-
                 <Route path="Gallery" element={<Gallery />} />
+                <Route path="Contact" element={<Contact />} />
+
                 <Route path="DatePicker" element={< CustomDatePicker/>} />
                 <Route path="Date" element={<DatePickerWithLayout/>} />
                  <Route path="SignUp" element={<Signup />} />

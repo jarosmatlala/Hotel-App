@@ -189,7 +189,7 @@ function DatePickerWithLayout() {
           </div>
 
           <div className="search-item">
-            <label>Number of Rooms</label>
+            <label>Room Qnty</label>
             <input
               type="number"
               value={numberOfRooms}
@@ -198,7 +198,7 @@ function DatePickerWithLayout() {
             />
           </div>
           <div className="search-item">
-            <label>Number of Guests</label>
+            <label>No of Guests</label>
             <input
               type="number"
               value={numberOfGuests}
@@ -207,9 +207,9 @@ function DatePickerWithLayout() {
             />
           </div>
 
-          <div>
+          {/* <div>
             <button className="search-item" onClick={handleClick}  >Change Room</button>
-          </div>
+          </div> */}
         </div>
 
       </div>
@@ -270,13 +270,18 @@ function DatePickerWithLayout() {
                 />
               </div>
 
+              <div className="paybtn">
+
               <PayPalScriptProvider options={initialOptions}  >
 
-                <PayPalButtons
-                  createOrder={(data, actions) => createOrder(data, actions)}
-                  onApprove={(data, actions) => onApprove(data, actions)}
-                />
-              </PayPalScriptProvider>
+<PayPalButtons
+  createOrder={(data, actions) => createOrder(data, actions)}
+  onApprove={(data, actions) => onApprove(data, actions)}
+/>
+</PayPalScriptProvider>
+              </div>
+
+              
 
 
             </div>

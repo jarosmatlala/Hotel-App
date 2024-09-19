@@ -16,17 +16,7 @@ import './Footer.css';
 const Gallery = () => {
     const navigate = useNavigate();
 
-    // const handleGarden = async () => {
-    //     const roomDetails = {
-    //         roomType: "Garden View Room",
-    //         price: "R300.00",
-    //         userId: "unique-user-id",
-    //     };
-
-    //     await setDoc(doc(db, "bookings", "booking-id"), roomDetails);
-    //     navigate('/Droom', { state: roomDetails });
-
-    // }
+   
 
     const handleRoomSelection = (roomType, price) => {
         const roomDetails = {
