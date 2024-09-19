@@ -58,7 +58,8 @@ function DatePickerWithLayout() {
       if (docSnap.exists()) {
         const data = docSnap.data();
         setBookingDetails(data);
-        setNewRoomName(data.roomType);
+        setRooms(data.rooms || []); 
+        setNewRoomName(data.rooms && data.rooms[0]?.roomType);
 
         const totalAmount = data.price || 0;
         setPaymentData((prevData) => ({ ...prevData, amount: totalAmount }));
@@ -85,6 +86,19 @@ function DatePickerWithLayout() {
       });
     }
   }, [selectedCheckInDate, selectedCheckOutDate, numberOfRooms,numberOfGuests]);
+
+
+
+  // const handleCheckInDateChange = (date) => { 
+  //   setSelectedCheckInDate(date); 
+  //   dispatch(setCheckInDate(date ? date.toISOString() : null));  
+  // }; 
+ 
+  // const handleCheckOutDateChange = (date) => { 
+  //   setSelectedCheckOutDate(date); 
+  //   dispatch(setCheckOutDate(date ? date.toISOString() : null));  
+  // };
+
 
   const handleEmailClick = () => {
     if (bookingDetails) {
@@ -136,17 +150,66 @@ function DatePickerWithLayout() {
     setNewRoomName(e.target.value);
   };
 
-  const handleRoomNameSave = () => {
-    setBookingDetails((prevDetails) => ({
-      ...prevDetails,
-      roomType: newRoomName,
-    }));
-    setIsEditingRoom(false);
-  };
+  // const handleRoomNameSave = () => {
+  //   setBookingDetails((prevDetails) => ({
+  //     ...prevDetails,
+  //     roomType: newRoomName,
+  //   }));
+  //   setIsEditingRoom(false);
+  // };
 
-  const handleEditClick = () => {
-    setIsEditingRoom(true);
-  }
+  const handleRoomNameSave = async () => { 
+    if (editRoomIndex !== null) { 
+      const updatedRooms = rooms.map((room, index) => 
+        index === editRoomIndex ? { ...room, roomType: newRoomName } : room 
+      ); 
+
+      setRooms(updatedRooms); 
+      setBookingDetails((prevDetails) => ({ 
+        ...prevDetails, 
+        rooms: updatedRooms, 
+      })); 
+      setIsEditingRoom(false); 
+      setEditRoomIndex(null); 
+      await updateDoc(doc(db, "bookings", "booking-id"), { rooms: updatedRooms }); 
+    } 
+  }; 
+
+
+
+  // const handleEditClick = () => {
+  //   setIsEditingRoom(true);
+  // }
+
+  const handleEditClick = (index) => { 
+    setIsEditingRoom(true); 
+    setEditRoomIndex(index); 
+    setNewRoomName(rooms[index]?.roomType || ""); 
+  }; 
+
+  const handleAddRoom = () => { 
+    const newRoom = { roomType: newRoomName }; 
+    const updatedRooms = [...rooms, newRoom]; 
+    setRooms(updatedRooms); 
+    setBookingDetails((prevDetails) => ({ 
+      ...prevDetails, 
+      rooms: updatedRooms, 
+    })); 
+    setNewRoomName(""); 
+    updateDoc(doc(db, "bookings", "booking-id"), { rooms: updatedRooms }); 
+  }; 
+
+  const handleDeleteRoom = (index) => { 
+    const updatedRooms = rooms.filter((_, i) => i !== index); 
+    setRooms(updatedRooms); 
+    setBookingDetails((prevDetails) => ({ 
+      ...prevDetails, 
+      rooms: updatedRooms, 
+    })); 
+    updateDoc(doc(db, "bookings", "booking-id"), { rooms: updatedRooms }); 
+  }; 
+
+
 
   return (
 
@@ -241,6 +304,7 @@ function DatePickerWithLayout() {
                   placeholder="Enter new room name"
                 />
                 <button onClick={handleRoomNameSave}>Save</button>
+                <button onClick={() => setIsEditingRoom(false)}>Cancel</button> 
               </div>
             ) : (
               <div>
