@@ -21,6 +21,8 @@ import selectedDate from './components/DatePicker';
 import handleDateChange from './components/DatePicker';
 import DatePickerWithLayout from './components/DatePickerWithLayout';
 import ProtectedRoute from "./components/ProtectedRoute";
+import OrderConfirmed from "./OrderConfirmed";
+import DateSelection from "./components/"
 
 
 
@@ -49,6 +51,12 @@ function App() {
                 <Route path="DatePicker" element={< CustomDatePicker/>} />
                 <Route path="Date" element={<DatePickerWithLayout/>} />
                  <Route path="SignUp" element={<Signup />} />
+                 <Route path="confirmed" element={<OrderConfirmed />} />
+                 <Route path="Guest" element={<RoomGuestInput />} />
+                 <Route path="Summary" element={<BookingSummary />} />
+
+
+
               </Routes>           
           </Col>
         </Row>
